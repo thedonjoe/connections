@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="Connections.RequestDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Connections"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView x:Name="Request_Details" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Request">
+                    <Grid x:Name="RequestDetailsGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" x:Name="Requester_RequestDetails" Text="{x:Bind Requester}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="1" x:Name="Receiver_RequestDetails" Text="{x:Bind Receiver}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="2" x:Name="RequestType_RequestDetails" Text="{x:Bind Request_Type}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="3" x:Name="Message_RequestDetails" Text="{x:Bind Request_Text}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+
+                        <Grid Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RequestResponseButtonsGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="RequestAcceptButton" Content="Accept" Grid.Column="0"/>
+                            <Button x:Name="RequestDetailsButton" Content="Ideas" Grid.Column="1"/>
+                            <Button x:Name="RequestRejectButton" Content="Reject" Grid.Column="2"/>
+                        </Grid>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

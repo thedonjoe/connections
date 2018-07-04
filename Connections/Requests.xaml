@@ -13,23 +13,27 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="RequestsView" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ListView x:Name="RequestsView" SelectionMode="Single"  Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="RequestsView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Request">
+
                     <Grid x:Name="Requests_View" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        
-                        <TextBlock x:Name="Requester" Text="{x:Bind Requester}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" FontSize="20"/>
-                        <TextBlock x:Name="Receiver" Text="{x:Bind Receiver}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" FontSize="20"/>
-                        <TextBlock x:Name="Request_Type" Text="{x:Bind Request_Type}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" FontFamily="15"/>
-                        <TextBlock x:Name="Request_Content" Text="{x:Bind Request_Text}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="4" FontSize="20"/>
-                    </Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock x:Name="Requester" Text="{x:Bind Requester}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" FontSize="20"/>
+                            <TextBlock x:Name="Receiver" Text="{x:Bind Receiver}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" FontSize="20"/>
+                            <TextBlock x:Name="Request_Type" Text="{x:Bind Request_Type}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" FontFamily="15"/>
+                            <TextBlock x:Name="Request_Content" Text="{x:Bind Request_Text}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" FontSize="20"/>
+
+                            
+                        </Grid>
+
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

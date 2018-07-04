@@ -7,16 +7,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="ProfView" Grid.Row="0"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionMode="None">
+        <ListView x:Name="ProfView" Grid.Row="0"  Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Profile_View">
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}">
+                        
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
@@ -24,18 +25,19 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock x:Name="Name" Text="{x:Bind Name}" Grid.Row="0" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <TextBlock x:Name="Address" Text="{x:Bind Location}" Grid.Row="1" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <TextBlock x:Name="Friend_Count" Text="{x:Bind Friends_Count}" Grid.Row="2" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <Grid x:Name="Likes" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3">
+                        <TextBlock x:Name="Name" Text="{x:Bind Name}" Grid.Row="0" FontSize="36" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Black" TextAlignment="Center"/>
+                        <TextBlock x:Name="Address" Text="{x:Bind Location}" Grid.Row="1" FontSize="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light"/>
+                        <TextBlock x:Name="Friend_Count" Text="{x:Bind Friends_Count}" Grid.Row="2" FontSize="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontWeight="Bold"/>
+                        <Grid x:Name="Likes"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="Likes1" Text="{x:Bind Likes1}" Grid.Column="0" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                            <TextBlock x:Name="Likes2" Text="{x:Bind Likes2}" Grid.Column="1" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                            <TextBlock x:Name="Likes3" Text="{x:Bind Likes3}" Grid.Column="2" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            <TextBlock x:Name="Likes1" Text="{x:Bind Likes1}" Grid.Column="1" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light"/>
+
+                            <TextBlock x:Name="Likes2" Text="{x:Bind Likes2}" Grid.Column="1" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light"/>
+                            <TextBlock x:Name="Likes3" Text="{x:Bind Likes3}" Grid.Column="2" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Assistant Light"/>
                         </Grid>
                         <Grid x:Name="Skills" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="4">
                             <Grid.ColumnDefinitions>
@@ -43,9 +45,9 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="Skills1" Text="{x:Bind Skills1}" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                            <TextBlock x:Name="Skills2" Text="{x:Bind Skills2}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                            <TextBlock x:Name="Skills3" Text="{x:Bind Skills3}" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            <TextBlock x:Name="Skills1" Text="{x:Bind Skills1}" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontSize="18"/>
+                            <TextBlock x:Name="Skills2" Text="{x:Bind Skills2}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontSize="18"/>
+                            <TextBlock x:Name="Skills3" Text="{x:Bind Skills3}" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontSize="18"/>
                         </Grid>
                     </Grid>
                 </DataTemplate>

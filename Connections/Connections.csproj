@@ -108,6 +108,9 @@
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestDetails.xaml.cs">
+      <DependentUpon>RequestDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Requests.xaml.cs">
       <DependentUpon>Requests.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,16 @@
     <None Include="Connections_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ahmed1.jpg" />
+    <Content Include="Assets\ahmed_photo.jpg" />
+    <Content Include="Assets\don_photo.jpg" />
+    <Content Include="Assets\don_photo1.jpg" />
+    <Content Include="Assets\guy_photo1.jpg" />
+    <Content Include="Assets\guy_photo11.jpg" />
+    <Content Include="Assets\james1.jpg" />
+    <Content Include="Assets\james_photo.jpg" />
+    <Content Include="Assets\meeting_logo.png" />
+    <Content Include="Assets\status_logo.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -146,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Profile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RequestDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

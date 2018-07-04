@@ -7,10 +7,69 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="Don" Content="Don" HorizontalAlignment="Left" Margin="358,85,0,0" VerticalAlignment="Top" Click="Don_Click"/>
-        <Button x:Name="Ahmed" Content="Ahmed" HorizontalAlignment="Left" Margin="1011,85,0,0" VerticalAlignment="Top" Click="Ahmed_Click"/>
-        <Button x:Name="James" Content="James" HorizontalAlignment="Left" Margin="715,85,0,0" VerticalAlignment="Top" Click="James_Click"/>
 
+    <Grid x:Name="LoginMainGrid" Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <Grid x:Name="LoginForm" BorderThickness="10" CornerRadius="40, 40, 40, 40" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="500,0,500,0" Padding="0,50,0,50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="LoginTitle" Text="LOGIN" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25,25,25,25" FontSize="72" FontFamily="Alegreya Sans Light" FontStretch="Normal" CharacterSpacing="200" Padding="10,10,10,0"/>
+            <ComboBox x:Name="Username_LoginForm" ScrollViewer.VerticalScrollMode="Enabled" PlaceholderText="Select Account" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontFamily="Alegreya Sans Black" Margin="100,10,100,10" SelectionChanged="Username_LoginForm_SelectionChanged" FontSize="20" Padding="12,25,0,25">
+                
+                    <ComboBoxItem x:Name="Don_LoginComboBox" FontFamily="Jura Light">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="Don_LoginComboBoxPhoto" Grid.Column="0" Source="Assets/don_photo1.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" >
+
+                            </Image>
+                            <TextBlock x:Name="Don_LoginComboBoxText" Text="Don Joe Martin" Grid.Column="1" FontFamily="Alegreya Sans" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" CharacterSpacing="100"/>
+                        </Grid>
+                    </ComboBoxItem>
+                    <ComboBoxItem x:Name="Ahmed_LoginComboBox" FontFamily="Jura Light">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="Ahmed_LoginComboBoxPhoto" Grid.Column="0" Source="Assets/ahmed_photo.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" >
+
+                            </Image>
+                        <TextBlock x:Name="Ahmed_LoginComboBoxText" Text="Ahmed Aboulcher" Grid.Column="1" FontFamily="Alegreya Sans" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" CharacterSpacing="100"/>
+                        </Grid>
+                    </ComboBoxItem>
+                <ComboBoxItem x:Name="James_LoginComboBox" FontFamily="Jura Light" >
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="8*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image x:Name="James_LoginComboBoxPhoto" Grid.Column="0" Source="Assets/james_photo.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" >
+
+                        </Image>
+                        <TextBlock x:Name="James_LoginComboBoxText" Text="James Daou" Grid.Column="1" FontFamily="Alegreya Sans" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" CharacterSpacing="100"/>
+                    </Grid>
+                </ComboBoxItem>
+
+            </ComboBox>
+            <PasswordBox x:Name="Password_LoginForm" PlaceholderText="Password" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="100,10,100,10" FontSize="20"/>
+            <Button x:Name="LoginButton" Style="{StaticResource DefaultButtonStyle}" Content="LOGIN" Grid.Row="3" Background="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="100,10,100,10" FontFamily="Alegreya Sans Medium" FontSize="20" FontWeight="Bold" CharacterSpacing="200" Padding="8,15,8,15" Click="LoginButton_Click"/>
+            <Grid x:Name="LoginFormDivider" Grid.Row="4"  Background="{ThemeResource SystemControlBaseHighAcrylicElementBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="10" Margin="100,10,100,10"/>
+            <Button x:Name="FacebookLoginButton" Style="{StaticResource FacebookButtonStyle}" Background="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush}" FontFamily="Alegreya Sans Medium" Content="Login with Facebook" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="100,10,100,10" BorderBrush="#FF4267B2" FontSize="20" CharacterSpacing="200" Padding="8,10,8,10"/>
+            <Button x:Name="TwitterLoginButton" Style="{StaticResource TwitterButtonStyle}"  Background="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush}" FontFamily="Alegreya Sans Medium" Content="Login with Twitter" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="100,10,100,10" BorderBrush="#FF1DA1F2" CharacterSpacing="200" FontSize="20" Padding="8,10,8,10" />
+
+            <Grid x:Name="LoginFormBase" Grid.Row="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="10"/>
+
+        </Grid>
     </Grid>
 </Page>

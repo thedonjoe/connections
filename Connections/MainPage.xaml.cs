@@ -23,9 +23,6 @@ namespace Connections
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     /// 
-    
-    
-
     public sealed partial class MainPage : Page
     {
         public List<Feed_Items> don_feed = new List<Feed_Items>();
@@ -66,19 +63,41 @@ namespace Connections
         {
             this.Frame.Navigate(typeof(Profile));
         }
+
+        private void FeedView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
     }
     public class Feed_Items
     {
         public Feed_Items(string posterName, string postContent, string postType)
         {
-            Poster_Name = posterName;
+            Poster_Name = posterName.ToUpper();
             Post_Content = postContent;
             Post_Type = postType;
+
+            if (Post_Type == "Meeting")
+                Post_Type_Logo_path = "Assets/meeting_logo.png";
+
+            if (Poster_Name == "Don Joe Martin")
+                Poster_Photo = "Assets/don_photo.jpg";
+
+            if (Poster_Name == "Ahmed Aboulcher")
+                Poster_Photo = "Assets/ahmed_photo.jpg";
+
+            if (Poster_Name == "James Daou")
+                Poster_Photo = "Assets/james_photo.jpg";
+
+            if (Post_Type == "Status")
+                Post_Type_Logo_path = "Assets/status_logo.png";
+
         }
 
         public string Poster_Name { get; set; }
+        public string Poster_Photo { get; set; }
         public string Post_Content { get; set; }
         public string Post_Type { get; set; }
-
+        public string Post_Type_Logo_path { get; set; }
     }
 }

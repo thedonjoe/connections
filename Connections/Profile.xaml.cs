@@ -33,7 +33,7 @@ namespace Connections
             //Profile_View don= new Profile_View("Don Joe Martin", "Dubai, UAE", 234, "Harry Potter", "Racing", "Food", "Software Development", "Photography", "Writing");
             don.Add(new Profile_View("Don Joe Martin", "Dubai, UAE", 234, "Harry Potter", "Racing", "Food", "Software Development", "Photography", "Writing"));
             //Profile_View ahmed = new Profile_View("Ahmed Aboulcher", "Dubai, UAE", 343, "Porsche", "Traveling", "Movies", "Management", "Public Speaking", "Innovation");
-            ahmed.Add(new Profile_View("Ahmed Aboulcher", "Dubai, UAE", 343, "Porsche", "Traveling", "Movies", "Management", "Public Speaking", "Innovation"));
+            ahmed.Add(new Profile_View("Ahmed Aboulcher", "Dubai, UAE", 343, "Porsche", "Traveling", "Deadpool", "Management", "Public Speaking", "Innovation"));
             //Profile_View james = new Profile_View("James Daou", "Dubai, UAE", 275, "Football", "Titanic", "Cars", "Front End Development", "Server Architecture", "Computer Engineering");
             james.Add(new Profile_View("James Daou", "Dubai, UAE", 275, "Football", "Titanic", "Cars", "Front End Development", "Server Architecture", "Computer Engineering"));
 
@@ -63,9 +63,22 @@ namespace Connections
         public Profile_View(string name, string location, int friends_count, string likes1, string likes2, string likes3, string skills1, string skills2, string skills3)
         {
             Name = name;
+
+            if (Globals.PERSON == 1)
+                Profile_Picture = "Assets/don_photo.jpg";
+
+            else if (Globals.PERSON == 2)
+                Profile_Picture = "Assets/ahmed_photo.jpg";
+
+            else if (Globals.PERSON == 3)
+                Profile_Picture = "Assets/james_photo.jpg";
+
             Location = location;
             Friends_Count = friends_count;
             Likes1 = likes1;
+
+
+
             Likes2 = likes2;
             Likes3 = likes3;
             Skills1 = skills1;
@@ -76,7 +89,7 @@ namespace Connections
 
         public string Name { get; set; }
 
-        //public Image Profile_Picture { get; set; }
+        public string Profile_Picture { get; set; }
 
         public string Location { get; set; }
 
@@ -89,21 +102,21 @@ namespace Connections
         public int Friends_Count { get; set; }
 
         public string Likes1 { get; set; }
-        //public Image Likes1_Image { get; set; }
+        public string Likes1_logo { get; set; }
 
         public string Likes2 { get; set; }
-        //public Image Likes2_Image { get; set; }
+        public string Likes2_logo { get; set; }
 
         public string Likes3 { get; set; }
-        //public Image Likes3_Image { get; set; }
+        public string Likes3_logo { get; set; }
 
         public string Skills1 { get; set; }
-        //public Image Skills1_Logo { get; set; }
+        public string Skills1_logo { get; set; }
 
         public string Skills2 { get; set; }
-        //public Image Skills2_Logo { get; set; }
+        public string Skills2_logo { get; set; }
 
         public string Skills3 { get; set; }
-        //public Image Skills3_logo { get; set; }
+        public string Skills3_logo { get; set; }
     }
 }

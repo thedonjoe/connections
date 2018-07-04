@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -14,7 +15,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using static Connections.App;
 
-
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Connections
@@ -22,29 +22,18 @@ namespace Connections
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Login : Page
+    public sealed partial class RequestDetails : Page
     {
-        public Login()
+        public static ObservableCollection<Request> selectedRequest { get; set; } = new ObservableCollection<Request>();
+        public RequestDetails()
         {
             this.InitializeComponent();
 
-        }
+            selectedRequest.Add(Globals.selectedReq);
 
-        private void Username_LoginForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(Username_LoginForm.SelectedItem == Don_LoginComboBox)
-                Globals.PERSON = 1;
+            Request_Details.ItemsSource = selectedRequest;
 
-            if (Username_LoginForm.SelectedItem == Ahmed_LoginComboBox)
-                Globals.PERSON = 2;
-
-            if (Username_LoginForm.SelectedItem == Ahmed_LoginComboBox)
-                Globals.PERSON = 3;
-        }
-
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
+            
         }
     }
 }

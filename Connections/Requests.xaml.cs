@@ -23,11 +23,15 @@ namespace Connections
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
+    
     public sealed partial class Requests : Page
     {
         static public ObservableCollection<Request> don_requests { get; set; } = new ObservableCollection<Request>();
         static public ObservableCollection<Request> ahmed_requests { get; set; } = new ObservableCollection<Request>();
         static public ObservableCollection<Request> james_requests { get; set; } = new ObservableCollection<Request>();
+
+        
         public Requests() 
         {
             this.InitializeComponent();
@@ -143,6 +147,12 @@ namespace Connections
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Login));
+        }
+
+        private void RequestsView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Globals.selectedReq = RequestsView.SelectedItem as Request;
+            this.Frame.Navigate(typeof(RequestDetails));
         }
     }
 
