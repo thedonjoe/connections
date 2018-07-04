@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="Connections.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Connections"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button x:Name="Don" Content="Don" HorizontalAlignment="Left" Margin="358,85,0,0" VerticalAlignment="Top" Click="Don_Click"/>
+        <Button x:Name="Ahmed" Content="Ahmed" HorizontalAlignment="Left" Margin="1011,85,0,0" VerticalAlignment="Top" Click="Ahmed_Click"/>
+        <Button x:Name="James" Content="James" HorizontalAlignment="Left" Margin="715,85,0,0" VerticalAlignment="Top" Click="James_Click"/>
+
+    </Grid>
+</Page>

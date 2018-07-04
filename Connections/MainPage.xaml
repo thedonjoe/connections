@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="Connections.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Connections"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        
+        <ListView x:Name="FeedView" SelectionMode="Single" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Feed_Items">
+                    <Grid Background="LightGray">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="posterName" Text="{x:Bind Poster_Name}" Grid.Row="0" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <TextBlock x:Name="post" Text="{x:Bind Post_Content}" Grid.Row="1" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <TextBlock x:Name="postType" Text="{x:Bind Post_Type}" Grid.Row="2" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="FocusVisualPrimaryBrush" Value="DarkGray"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <Button/>
+        </ListView>
+
+        <Button x:Name="GotoProfile" Content="Profile" Click="GotoProfile_Click" />
+
+    </Grid>
+</Page>
