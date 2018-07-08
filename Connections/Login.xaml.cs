@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,23 +29,38 @@ namespace Connections
         {
             this.InitializeComponent();
 
+            Globals.PERSON = 0;
+
         }
 
         private void Username_LoginForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             if(Username_LoginForm.SelectedItem == Don_LoginComboBox)
                 Globals.PERSON = 1;
 
             if (Username_LoginForm.SelectedItem == Ahmed_LoginComboBox)
                 Globals.PERSON = 2;
 
-            if (Username_LoginForm.SelectedItem == Ahmed_LoginComboBox)
+            if (Username_LoginForm.SelectedItem == James_LoginComboBox)
                 Globals.PERSON = 3;
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            if(Globals.PERSON == 0)
+            {
+                await showMessageAsync();
+            }
+
+            else
+                this.Frame.Navigate(typeof(MainPage));
+        }
+
+        public async System.Threading.Tasks.Task showMessageAsync()
+        {
+            var messageDialog = new MessageDialog("Please select an account to sign in with");
+            await messageDialog.ShowAsync();
         }
     }
 }

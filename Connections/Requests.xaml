@@ -7,7 +7,164 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource SystemControlChromeHighAcrylicWindowMediumBrush}">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView x:Name="RequestsView" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionMode="Single" DoubleTapped="RequestsView_DoubleTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Request">
+                    <Grid Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" MinWidth="700" CornerRadius="10, 10, 10, 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15, 15, 15, 15" Padding="10, 10, 10, 10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.5*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="Type" Grid.Row="0" Text="{x:Bind Request_Type}" FontSize="18" FontFamily="Alegraya Sans Light" HorizontalAlignment="Left" VerticalAlignment="Stretch" Padding="15, 10, 10, 10" Margin="10, 0, 10, 0"/>
+                        <TextBlock x:Name="Request_message" Grid.Row="1" Text="{x:Bind Request_Text}" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Stretch" Padding="15, 10, 10, 10" Margin="10, 0, 10, 0" FontFamily="Alegraya Sans Medium" FontSize="24"/>
+                        <Grid x:Name="Requester" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="10, 10, 10, 10" Margin="10, 0, 10, 0">
+ 
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <PersonPicture Style="{StaticResource SkillLikeStyle}" Grid.Column="0" ProfilePicture="{x:Bind Requester_Image}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5, 5, 5, 5" Margin="5, 5, 5, 5"/>
+                                <TextBlock x:Name="Requester_Name" Text="{x:Bind Requester}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            </Grid>
+
+                            
+
+                        
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid x:Name="NewMeeting" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="Meeting_Create" Content="Add" Grid.Row="0" Click="Meeting_Create_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15, 15, 15, 15"/>
+            
+            <Grid  x:Name="RequestingPerson_Grid" Visibility="Collapsed" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15, 15, 15, 15" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="RequesterName_Header" Grid.Row="0" Text="Requester" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16"/>
+                <TextBlock x:Name="RequestingPerson" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Alegraya Sans Medium" FontSize="24"/>
+            </Grid>
+
+            <Grid Grid.Row="2" x:Name="Requesting_Grid" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="Requesting_Header" Grid.Row="0" Text="Requesting..." HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16"/>
+
+                <ListBox x:Name="Requesting"  HorizontalAlignment="Stretch" SelectionMode="Single" VerticalAlignment="Stretch" Grid.Row="1" Margin="5, 5, 5, 5">
+                    <ListBoxItem x:Name="Don_ListBox" >
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="Don_LoginListBoxPhoto" Grid.Column="0" Source="Assets/don_photo1.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" >
+
+                            </Image>
+                            <TextBlock x:Name="Don_LoginListBoxText" Text="Don Joe Martin" Grid.Column="1" FontFamily="Alegreya Sans" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" CharacterSpacing="100"/>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem x:Name="Ahmed_ListBox">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="Ahmed_LoginListBoxPhoto" Grid.Column="0" Source="Assets/ahmed_photo.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" >
+
+                            </Image>
+                            <TextBlock x:Name="Ahmed_LoginListBoxText" Text="Ahmed Aboulcher" Grid.Column="1" FontFamily="Alegreya Sans" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" CharacterSpacing="100"/>
+                        </Grid>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="James_ListBox">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="James_LoginListBoxPhoto" Grid.Column="0" Source="Assets/james_photo.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" >
+
+                            </Image>
+                            <TextBlock x:Name="James_LoginListBoxText" Text="James Daou" Grid.Column="1" FontFamily="Alegreya Sans" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" CharacterSpacing="100"/>
+                        </Grid>
+                    </ListBoxItem>
+                </ListBox>
+            </Grid>
+
+            <Grid x:Name="RequestType_Grid" Grid.Row="3" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="RequestType_Header" Grid.Row="0" Text="Select Request Type" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16"/>
+                
+                <ListBox x:Name="RequestType" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionMode="Single" SelectionChanged="RequestType_SelectionChanged" Margin="5, 5, 5, 5">
+                    <ListBoxItem x:Name="Connection" Content="Connection"/>
+                    <ListBoxItem x:Name="Introduction" Content="Introduction"/>
+                    <ListBoxItem x:Name="Barter" Content="Work together"/>
+                </ListBox>
+            </Grid>
+
+            <Grid x:Name="IntroduceTo_Grid" Visibility="Collapsed" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="IntroduceTo_Header" Grid.Row="0" Text="Introduce To..." HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16"/>
+                
+                <ListBox x:Name="IntroduceTo" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionMode="Single" Margin="5, 5, 5, 5">
+                    <ListBoxItem x:Name="ConnectWithDon_ListBox"  Content="Don Joe Martin"/>
+                    <ListBoxItem x:Name="ConnectWithAhmed_ListBox" Content="Ahmed Aboulcher"/>
+                    <ListBoxItem x:Name="ConnectWithJames_ListBox" Content="James Daou"/>
+                </ListBox>
+            </Grid>
+
+            <Grid x:Name="Request_Message_Grid" Visibility="Collapsed" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="Request_message_Header" Grid.Row="0" Text="Your Message" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16"/>
+
+                <TextBox x:Name="Request_Message" Grid.Row="1" PlaceholderText="Your message" AcceptsReturn="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" />
+            </Grid>
+            
+            <Button x:Name="SubmitButton" Grid.Row="6" Visibility="Collapsed" Content="Request!" Click="SubmitButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15, 15, 15, 15" />
+        </Grid>
+    </Grid>
+
+    <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="2*"/>
@@ -68,7 +225,8 @@
             <TextBox x:Name="Request_Message" Visibility="Collapsed" PlaceholderText="Your message" AcceptsReturn="True" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <Button x:Name="SubmitButton" Grid.Column="6" Visibility="Collapsed" Content="Request!" Click="SubmitButton_Click"/>
         </Grid>
+        
         <Button x:Name ="LogOut" Grid.Row="2" Content="Log Out" Click="LogOut_Click"/>
 
-    </Grid>
+    </Grid>-->
 </Page>

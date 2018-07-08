@@ -7,38 +7,107 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="Request_Details" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <ListView.ItemTemplate>
+    <Grid Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        
+        <GridView x:Name="Request_Details" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Request">
-                    <Grid x:Name="RequestDetailsGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid x:Name="RequestDetailsGrid" Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DoubleTapped="RequestDetailsGrid_DoubleTapped">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
                             <RowDefinition Height="2*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="5*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" x:Name="Requester_RequestDetails" Text="{x:Bind Requester}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <TextBlock Grid.Row="1" x:Name="Receiver_RequestDetails" Text="{x:Bind Receiver}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <TextBlock Grid.Row="2" x:Name="RequestType_RequestDetails" Text="{x:Bind Request_Type}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <TextBlock Grid.Row="3" x:Name="Message_RequestDetails" Text="{x:Bind Request_Text}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
+                        <Grid x:Name="Requester_Details" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="15, 15, 15, 15" Padding="10, 10, 10, 10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1.5*"/>
+                            </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RequestResponseButtonsGrid">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Button x:Name="RequestAcceptButton" Content="Accept" Grid.Column="0"/>
-                            <Button x:Name="RequestDetailsButton" Content="Ideas" Grid.Column="1"/>
-                            <Button x:Name="RequestRejectButton" Content="Reject" Grid.Column="2"/>
+                            <TextBlock x:Name="Requester_Header" Grid.Row="0" Text="Requester" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16" Padding="15, 10, 10, 10" Margin="10, 10, 10, 10"/>
+
+                            <TextBlock x:Name="Requester_Name" Grid.Row="1" Text="{x:Bind Requester}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Medium" FontSize="24" Padding="15, 10, 10, 10" Margin="10, 10, 10, 10"/>
+
                         </Grid>
 
+                        <Grid x:Name="Request_Type_Details" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}" Margin="15, 15, 15, 15" Padding="10, 10, 10, 10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1.5*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock x:Name="Request_Type_Header" Grid.Row="0" Text="Request Type" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16" Padding="15, 10, 10, 10" Margin="10, 10, 10, 10"/>
+
+                            <TextBlock x:Name="Request_Type" Grid.Row="1" Text="{x:Bind Request_Type}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Medium" FontSize="24" Padding="15, 10, 10, 10" Margin="10, 10, 10, 10"/>
+
+                        </Grid>
+
+                        <Grid x:Name="Request_Message" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}" Margin="15, 15, 15, 15" Padding="10, 10, 10, 10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1.5*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock x:Name="Request_Message_Header" Grid.Row="0" Text="Request Message" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16" Padding="15, 10, 10, 10" Margin="10, 10, 10, 10"/>
+
+                            <TextBlock x:Name="Request_Message_Content" Grid.Row="1" Text="{x:Bind Request_Text}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Medium" FontSize="24" Padding="15, 10, 10, 10" Margin="10, 10, 10, 10"/>
+
+                        </Grid>
+
+
                     </Grid>
+
+
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </GridView.ItemTemplate>
+        </GridView>
+        
+            <Grid Grid.Row="1" Visibility="Collapsed" x:Name="Request_Ideas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15, 15, 15, 15" Padding="10, 10, 10, 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="Idea_Header" Grid.Row="0" Text="Response Ideas" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16" Padding="15, 10, 10, 10" Margin="10, 10, 10, 10"/>
+
+                <FlipView Grid.Row="1"  x:Name="Ideas_Cards" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="15, 15, 15, 15" Padding="10, 10, 10, 10">
+                    <FlipViewItem x:Name="Idea1" DoubleTapped="Idea1_Tapped">
+                        <FlipViewItem.Content>
+                            <TextBlock Text="@DonJoeMartin met @LeonardoDiCaprio yesterday. You could ask for an autograph in return" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Medium" FontSize="24" Padding="15, 10, 10, 10" Margin="10, 10, 10, 10"/>
+                        </FlipViewItem.Content>
+                    </FlipViewItem>
+                    <FlipViewItem x:Name="Idea2" DoubleTapped="Idea2_Tapped">
+                        <FlipViewItem.Content>
+                            <TextBlock Text="@DonJoeMartin knows software development. You could ask him for help with the backend of your next application" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Medium" FontSize="20" Padding="15, 10, 10, 10" Margin="10, 10, 10, 10"/>
+                        </FlipViewItem.Content>
+                    </FlipViewItem>
+                </FlipView>
+
+                <Grid x:Name="YourResponseMessage" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5 5">
+                    <TextBlock x:Name="Response_Message_Header" Grid.Row="0" Text="Request Message" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16" Padding="15, 10, 10, 10" Margin="10, 10, 10, 10"/>
+
+                    <TextBox x:Name="Response_Message_Content" Grid.Row="1" PlaceholderText="Your response here" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegraya Sans Medium" FontSize="24" Padding="15, 10, 10, 10" Margin="10, 10, 10, 10" />
+                </Grid>
+
+                <Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RequestResponseButtonsGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="RequestAcceptButton" Content="Accept" Grid.Column="0"  Click="RequestAcceptButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15, 15, 15, 15"/>
+                    <Button x:Name="RequestRejectButton" Content="Reject" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15, 15, 15, 15"/>
+                </Grid>
+
+                
+            </Grid>
+        
     </Grid>
 </Page>

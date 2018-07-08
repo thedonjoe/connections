@@ -6,12 +6,15 @@ using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage.Streams;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using static Connections.App;
 
@@ -25,79 +28,124 @@ namespace Connections
     /// 
     public sealed partial class MainPage : Page
     {
-        public List<Feed_Items> don_feed = new List<Feed_Items>();
 
-        public List<Feed_Items> ahmed_feed = new List<Feed_Items>();
-
-        public List<Feed_Items> james_feed = new List<Feed_Items>();
 
         
         public MainPage()
         {
             this.InitializeComponent();
 
+            if(Globals.PERSON == 1)
+            {
+               // string url = "ms-appx:///Assets/don_photo1.jpg";
+               ProPicture.ProfilePicture = new BitmapImage(new Uri("ms-appx:///Assets/don_photo1.jpg", UriKind.Absolute));
+                ProName.Text = "Don Joe Martin";
+                //ProfileDetails.Height = ProPicture.Height;
+            }
 
-            //IEnumerable<PropertyInfo> propertyInfos = typeof(Feed).GetRuntimeProperties();
-            don_feed.Add(new Feed_Items("Ahmed Aboulcher", "Great meeting you @Jame_Daou", "Meeting"));
-            don_feed.Add(new Feed_Items("Don Joe Martin", "Coffee breaks and loud drives - Chicken Soup for the Soul @Ahmed_Aboulcher", "Meeting"));
-            don_feed.Add(new Feed_Items("Ahmed Aboulcher", "Need some petrol, gotta go to Fujairah", "Status"));
+            else if(Globals.PERSON == 2)
+            {
+                ProPicture.ProfilePicture = new BitmapImage(new Uri("ms-appx:///Assets/ahmed_photo.jpg", UriKind.Absolute));
+                ProName.Text = "Ahmed Aboulcher";
+            }
 
-            ahmed_feed.Add(new Feed_Items("Don Joe Martin", "Good Coffee", "Status"));
-            ahmed_feed.Add(new Feed_Items("James Daou", "BRAZIL FOR THE WIN", "Status"));
-            ahmed_feed.Add(new Feed_Items("Don Joe Martin", "Coffee breaks and loud drives - Chicken Soup for the Soul @Ahmed_Aboulcher", "Meeting"));
+            else if(Globals.PERSON == 3)
+            {
+                ProPicture.ProfilePicture = new BitmapImage(new Uri("ms-appx:///Assets/james_photo.jpg", UriKind.Absolute));
+                ProName.Text = "James Daou";
+            }
 
-            james_feed.Add(new Feed_Items("Ahmed Aboulcher", "Need some petrol, gotta go to Fujairah", "Status"));
-            james_feed.Add(new Feed_Items("Don Joe Martin", "Coffee breaks and loud drives - Chicken Soup for the Soul @Ahmed_Aboulcher", "Meeting"));
-
-            if (Globals.PERSON == 1)
-                FeedView.ItemsSource = don_feed;
-
-            else if (Globals.PERSON == 2)
-                FeedView.ItemsSource = ahmed_feed;
-
-            else
-                FeedView.ItemsSource = james_feed;
         }
 
-        private void GotoProfile_Click(object sender, RoutedEventArgs e)
+        #region NavigationView event handlers
+        private void nvTopLevelNav_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Profile));
+            
+            // set the initial SelectedItem
+            foreach (NavigationViewItemBase item in nvTopLevelNav.MenuItems)
+            {
+                if (item is NavigationViewItem && item.Tag.ToString() == "Feed")
+                {
+                    nvTopLevelNav.SelectedItem = item;
+                    break;
+                }
+            }
+            myFrame.Navigate(typeof(Feed));
+
+            
         }
 
-        private void FeedView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void nvTopLevelNav_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+        }
+
+        private async void nvTopLevelNav_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+
+            Grid gridcontent = args.InvokedItem as Grid;
+            if(gridcontent!=null)
+            {
+                if (gridcontent.Tag.ToString() == "Profile_Details_Grid")
+                {
+                    myFrame.Navigate(typeof(Profile));
+                }
+            }
+
+            TextBlock ItemContent = args.InvokedItem as TextBlock;
+            if (ItemContent != null)
+            {
+                switch (ItemContent.Tag)
+                {
+                    case "Nav_Feed":
+                        myFrame.Navigate(typeof(Feed));
+                        break;
+
+                    case "Nav_Requests":
+                        myFrame.Navigate(typeof(Requests));
+                        break;
+
+                    case "Nav_Meetings":
+                        myFrame.Navigate(typeof(MeetingDetails));
+                        break;
+
+                    case "Nav_LogOut":
+                        await showMessageAsync();
+                        Globals.requests_flag = 0;
+                        break;
+                }
+            }
+
+        }
+        #endregion
+
+        public async System.Threading.Tasks.Task showMessageAsync()
+        {
+            var messageDialog = new MessageDialog("Just to confirm: You want to log out?");
+
+           
+
+            messageDialog.Commands.Add(new UICommand(
+                "Yes",
+                new UICommandInvokedHandler(this.YesCommandInvokedHandler)));
+
+            messageDialog.Commands.Add(new UICommand(
+                "No",
+                 new UICommandInvokedHandler(this.NoCommandInvokedHandler)));
+
+            messageDialog.CancelCommandIndex = 1;
+
+            await messageDialog.ShowAsync();
+        }
+
+        private void YesCommandInvokedHandler(IUICommand command)
+        {
+            this.Frame.Navigate(typeof(Login));
+        }
+        private void NoCommandInvokedHandler(IUICommand command)
         {
             
         }
+
     }
-    public class Feed_Items
-    {
-        public Feed_Items(string posterName, string postContent, string postType)
-        {
-            Poster_Name = posterName.ToUpper();
-            Post_Content = postContent;
-            Post_Type = postType;
-
-            if (Post_Type == "Meeting")
-                Post_Type_Logo_path = "Assets/meeting_logo.png";
-
-            if (Poster_Name == "Don Joe Martin")
-                Poster_Photo = "Assets/don_photo.jpg";
-
-            if (Poster_Name == "Ahmed Aboulcher")
-                Poster_Photo = "Assets/ahmed_photo.jpg";
-
-            if (Poster_Name == "James Daou")
-                Poster_Photo = "Assets/james_photo.jpg";
-
-            if (Post_Type == "Status")
-                Post_Type_Logo_path = "Assets/status_logo.png";
-
-        }
-
-        public string Poster_Name { get; set; }
-        public string Poster_Photo { get; set; }
-        public string Post_Content { get; set; }
-        public string Post_Type { get; set; }
-        public string Post_Type_Logo_path { get; set; }
-    }
+    
 }

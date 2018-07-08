@@ -12,7 +12,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -95,6 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Feed.xaml.cs">
+      <DependentUpon>Feed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -124,14 +127,37 @@
   <ItemGroup>
     <Content Include="Assets\ahmed1.jpg" />
     <Content Include="Assets\ahmed_photo.jpg" />
+    <Content Include="Assets\arab_man.jpg" />
+    <Content Include="Assets\blogging.png" />
+    <Content Include="Assets\cars.jpg" />
+    <Content Include="Assets\car_racing.jpg" />
+    <Content Include="Assets\computer_engineering.png" />
+    <Content Include="Assets\connections-1.jpg" />
+    <Content Include="Assets\deadpool.jpg" />
     <Content Include="Assets\don_photo.jpg" />
     <Content Include="Assets\don_photo1.jpg" />
+    <Content Include="Assets\food.jpg" />
+    <Content Include="Assets\football.jpg" />
+    <Content Include="Assets\front_end.png" />
+    <Content Include="Assets\guy_photo.jpg" />
     <Content Include="Assets\guy_photo1.jpg" />
     <Content Include="Assets\guy_photo11.jpg" />
+    <Content Include="Assets\guy_photo2.jpg" />
+    <Content Include="Assets\harry_potter.jpg" />
+    <Content Include="Assets\innovation.png" />
     <Content Include="Assets\james1.jpg" />
     <Content Include="Assets\james_photo.jpg" />
+    <Content Include="Assets\leo_photo.jpg" />
+    <Content Include="Assets\management.png" />
     <Content Include="Assets\meeting_logo.png" />
+    <Content Include="Assets\photo.png" />
+    <Content Include="Assets\porsche.jpg" />
+    <Content Include="Assets\profile.png" />
+    <Content Include="Assets\public_speaking.png" />
+    <Content Include="Assets\server_architecture.png" />
     <Content Include="Assets\status_logo.png" />
+    <Content Include="Assets\titanic_movie_poster.jpg" />
+    <Content Include="Assets\traveling.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -146,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Feed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

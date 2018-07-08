@@ -40,6 +40,9 @@ namespace Connections
         {
             public static int PERSON;
             public static Request selectedReq;
+            public static int requests_flag;
+            public static int meetings_flag;
+            public static Request selectedResp;
         }
 
         private void ExtendAcrylicIntoTitleBar()
@@ -58,6 +61,9 @@ namespace Connections
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
+
+            Globals.requests_flag = 0;
+            Globals.meetings_flag = 0;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

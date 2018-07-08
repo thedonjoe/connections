@@ -8,53 +8,203 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <ListView x:Name="ProfView" Grid.Row="0"  Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="None">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Profile_View">
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}">
-                        
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock x:Name="Name" Text="{x:Bind Name}" Grid.Row="0" FontSize="36" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Black" TextAlignment="Center"/>
-                        <TextBlock x:Name="Address" Text="{x:Bind Location}" Grid.Row="1" FontSize="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light"/>
-                        <TextBlock x:Name="Friend_Count" Text="{x:Bind Friends_Count}" Grid.Row="2" FontSize="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontWeight="Bold"/>
-                        <Grid x:Name="Likes"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="Likes1" Text="{x:Bind Likes1}" Grid.Column="1" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light"/>
 
-                            <TextBlock x:Name="Likes2" Text="{x:Bind Likes2}" Grid.Column="1" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light"/>
-                            <TextBlock x:Name="Likes3" Text="{x:Bind Likes3}" Grid.Column="2" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Assistant Light"/>
+        <!--<ListView x:Name="ProfView" Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="None">-->
+        <GridView x:Name="ProfView" Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local:Profile_View">
+                    <Grid x:Name="Profile_Overall_Grid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" Padding="10, 10, 10, 10" Background="{ThemeResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle Grid.Row="0" x:Name="HeaderImage_Holder" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+                        <PersonPicture x:Name="Profile_Picture" Grid.Row="2" Grid.RowSpan="2" Style="{StaticResource ProfilePictureStyle}" ProfilePicture="{x:Bind Profile_Picture}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0"/>
+
+                        <Grid x:Name="Person_Name" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="10, 10, 10, 10" Margin="5, 5, 5, 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="320"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="Name" Text="{x:Bind Name}" Grid.Column="1" FontSize="36" HorizontalAlignment="Left" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Black" TextAlignment="Center"/>
                         </Grid>
-                        <Grid x:Name="Skills" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="4">
+
+                        <Grid HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Padding="10, 10, 10, 10" Margin="20, 20, 20, 20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="Skills1" Text="{x:Bind Skills1}" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontSize="18"/>
-                            <TextBlock x:Name="Skills2" Text="{x:Bind Skills2}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontSize="18"/>
-                            <TextBlock x:Name="Skills3" Text="{x:Bind Skills3}" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontSize="18"/>
+
+                            <Grid x:Name="Location_Details" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="10, 10, 10, 10" Margin="10, 10, 10, 10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="1.5*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock x:Name="Location_Header" Grid.Row="0" Text="Location" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16"/>
+                                <TextBlock x:Name="Location_Address" Grid.Row="1" Text="{x:Bind Location}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Alegraya Sans Medium" FontSize="24"/>
+
+                            </Grid>
+
+                            <Grid x:Name="Friends" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="10, 10, 10, 10" Margin="5, 5, 5, 5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="1.5*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock x:Name="Friends_Header" Grid.Row="0" Text="Friends" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16"/>
+
+                                <!--<Grid x:Name="Friends_Details" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="10, 10, 10, 10" Margin="10, 10, 10, 10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="7*"/>
+                                    </Grid.ColumnDefinitions>-->
+
+                                <TextBlock x:Name="Friend_Count" Grid.Row="1" Text="{x:Bind Friends_Count}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Alegraya Sans Medium" FontSize="24"/>
+
+                                <!--</Grid>-->
+
+                            </Grid>
                         </Grid>
+
+                        <!--<TextBlock x:Name="Address" Text="{x:Bind Location}" Grid.Row="1" FontSize="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light"/>-->
+                            <!--<TextBlock x:Name="Friend_Count" Text="{x:Bind Friends_Count}" Grid.Row="2" FontSize="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontWeight="Bold"/>-->
+                            
+                            <Grid x:Name="Likes" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="10, 10, 10, 10" Margin="10, 10, 10, 10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="2*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock x:Name="Likes_Header" Grid.Row="0" Text="Likes" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16"/>
+
+                                <Grid x:Name="Likes_Details" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="5, 5, 5, 5" Margin="5, 5, 5, 5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid x:Name="Like1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="5, 5, 5, 5" Margin="5, 5, 5, 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <PersonPicture Style="{StaticResource SkillLikeStyle}" ProfilePicture="{x:Bind Likes1_logo}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0"/>
+
+                                    <TextBlock x:Name="Likes1_Text" Text="{x:Bind Likes1}" Grid.Column="1" FontSize="18" Padding="10,0,5,0" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegreya Sans Medium"/>
+                                    </Grid>
+
+                                    <Grid x:Name="Like2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="5, 5, 5, 5" Margin="5, 5, 5, 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <PersonPicture Style="{StaticResource SkillLikeStyle}" ProfilePicture="{x:Bind Likes2_logo}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0"/>
+
+                                    <TextBlock x:Name="Likes2_Text" Text="{x:Bind Likes2}" Grid.Column="1" FontSize="18" Padding="10,0,5,0" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegreya Sans Medium"/>
+                                    </Grid>
+
+                                    <Grid x:Name="Like3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="5, 5, 5, 5" Margin="5, 5, 5, 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <PersonPicture Style="{StaticResource SkillLikeStyle}" ProfilePicture="{x:Bind Likes3_logo}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0"/>
+
+                                    <TextBlock x:Name="Likes3_Text" Text="{x:Bind Likes3}" Grid.Column="1" Padding="10,0,5,0" FontSize="18" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegreya Sans Medium"/>
+                                    </Grid>
+
+                                </Grid>
+                                
+                                <!--<TextBlock x:Name="Likes1" Text="{x:Bind Likes1}" Grid.Column="1" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light"/>
+
+                                <TextBlock x:Name="Likes2" Text="{x:Bind Likes2}" Grid.Column="1" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light"/>
+                                <TextBlock x:Name="Likes3" Text="{x:Bind Likes3}" Grid.Column="2" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Assistant Light"/>-->
+                            </Grid>
+
+                            <Grid x:Name="Skills" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="10, 10, 10, 10" Margin="10, 10, 10, 10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="2*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock x:Name="Skills_Header" Grid.Row="0" Text="Skills" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegraya Sans Light" FontSize="16"/>
+
+                                <Grid x:Name="Skills_Details" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="5, 5, 5, 5" Margin="5, 5, 5, 5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid x:Name="Skill1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="5, 5, 5, 5" Margin="5, 5, 5, 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <PersonPicture Style="{StaticResource SkillLikeStyle}" ProfilePicture="{x:Bind Skills1_logo}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0"/>
+
+                                    <TextBlock x:Name="Skills1_Text" Text="{x:Bind Skills1}" Grid.Column="1" FontSize="18" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Alegreya Sans Medium" Padding="10,0,5,0"/>
+                                    </Grid>
+
+                                    <Grid x:Name="Skill2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="5, 5, 5, 5" Margin="5, 5, 5, 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <PersonPicture Style="{StaticResource SkillLikeStyle}" ProfilePicture="{x:Bind Skills2_logo}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0"/>
+
+                                    <TextBlock x:Name="Skills2_Text" Text="{x:Bind Skills2}" Grid.Column="1" FontSize="18" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10,0,5,0" FontFamily="Alegreya Sans Medium"/>
+                                    </Grid>
+
+                                    <Grid x:Name="Skill3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="5, 5, 5, 5" Margin="5, 5, 5, 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <PersonPicture Style="{StaticResource SkillLikeStyle}" ProfilePicture="{x:Bind Skills3_logo}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0"/>
+
+                                    <TextBlock x:Name="Skills3_Text" Text="{x:Bind Skills3}" Grid.Column="1" FontSize="18" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" Padding="10,0,5,0" VerticalAlignment="Center" FontFamily="Alegreya Sans Medium"/>
+                                    </Grid>
+
+                                </Grid>
+
+                                <!--<TextBlock x:Name="Likes1" Text="{x:Bind Likes1}" Grid.Column="1" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light"/>
+
+                                <TextBlock x:Name="Likes2" Text="{x:Bind Likes2}" Grid.Column="1" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light"/>
+                                <TextBlock x:Name="Likes3" Text="{x:Bind Likes3}" Grid.Column="2" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Assistant Light"/>-->
+                            </Grid>
+
+                            <!--<Grid x:Name="Skills" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="Skills1" Text="{x:Bind Skills1}" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontSize="18"/>
+                                <TextBlock x:Name="Skills2" Text="{x:Bind Skills2}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontSize="18"/>
+                                <TextBlock x:Name="Skills3" Text="{x:Bind Skills3}" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Alegreya Sans Light" FontSize="18"/>
+                            </Grid>-->
+                        
                     </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Button x:Name="Meetings" Grid.Row="1" Content="Meetings" Click="Meetings_Click"  />
-        <Button x:Name="GoToRequests" Grid.Row="2" Content="Requests" Click="GoToRequests_Click"/>
+            </GridView.ItemTemplate>
+            <!--</ListView>-->
+        </GridView>
     </Grid>
 
 </Page>

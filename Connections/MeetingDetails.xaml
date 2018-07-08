@@ -7,27 +7,56 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource SystemControlChromeHighAcrylicWindowMediumBrush}">
         <ListView x:Name="MeetingView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Meeting">
-                    <Grid Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" MinWidth="700" CornerRadius="10, 10, 10, 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15, 15, 15, 15" Padding="10, 10, 10, 10">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="1.5*"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock x:Name="Location" Grid.Row="0" Text="{x:Bind Location}" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <TextBlock x:Name="Name" Grid.Row="1" Text="{x:Bind Name}" FontFamily="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <Grid x:Name="Attendees" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Name="Location" Grid.Row="1" Text="{x:Bind Location}" FontSize="18" FontFamily="Alegraya Sans Light" HorizontalAlignment="Left" VerticalAlignment="Stretch" Padding="5, 10, 10, 10" Margin="5, 0, 10, 0"/>
+                        <TextBlock x:Name="Name" Grid.Row="0" Text="{x:Bind Name}" HorizontalAlignment="Left" VerticalAlignment="Stretch" Padding="15, 10, 10, 0" Margin="10, 0, 10, 0" FontFamily="Kaushan Script" FontSize="24"/>
+                        <Grid x:Name="Attendees" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="10, 10, 10, 10" Margin="10, 0, 10, 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="Attendee1" Text="{x:Bind Attendee1}" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                            <TextBlock x:Name="Attendee2" Text="{x:Bind Attendee2}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                            <TextBlock x:Name="Attendee3" Text="{x:Bind Attendee3}" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+                            <Grid x:Name="Attendee1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <PersonPicture Style="{StaticResource SkillLikeStyle}" Grid.Column="0" ProfilePicture="{x:Bind Attendee1_Image}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5, 5, 5, 5" Margin="5, 5, 5, 5"/>
+                                <TextBlock x:Name="Attendee1_Name" Text="{x:Bind Attendee1}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            </Grid>
+
+                            <Grid x:Name="Attendee2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <PersonPicture Style="{StaticResource SkillLikeStyle}" Grid.Column="0" ProfilePicture="{x:Bind Attendee2_Image}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5, 5, 5, 5" Margin="5, 5, 5, 5"/>
+                                <TextBlock x:Name="Attendee2_Name" Text="{x:Bind Attendee2}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            </Grid>
+
+                            <Grid x:Name="Attendee3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <PersonPicture Style="{StaticResource SkillLikeStyle}" Grid.Column="0" ProfilePicture="{x:Bind Attendee3_Image}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock x:Name="Attendee3_Name" Text="{x:Bind Attendee3}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            </Grid>
+
+                            
                         </Grid>
                     </Grid>
                 </DataTemplate>

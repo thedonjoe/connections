@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using static Connections.App;
 
@@ -65,31 +66,75 @@ namespace Connections
             Name = name;
 
             if (Globals.PERSON == 1)
-                Profile_Picture = "Assets/don_photo.jpg";
+                Profile_Picture = new BitmapImage(new Uri("ms-appx:///Assets/don_photo1.jpg", UriKind.Absolute));
 
             else if (Globals.PERSON == 2)
-                Profile_Picture = "Assets/ahmed_photo.jpg";
+                Profile_Picture = new BitmapImage(new Uri("ms-appx:///Assets/ahmed_photo.jpg", UriKind.Absolute));
 
             else if (Globals.PERSON == 3)
-                Profile_Picture = "Assets/james_photo.jpg";
+                Profile_Picture = new BitmapImage(new Uri("ms-appx:///Assets/james_photo.jpg", UriKind.Absolute));
 
             Location = location;
             Friends_Count = friends_count;
             Likes1 = likes1;
 
-
+            if(Likes1 == "Harry Potter")
+                Likes1_logo = new BitmapImage(new Uri("ms-appx:///Assets/harry_potter.jpg", UriKind.Absolute));
+            else if(Likes1 == "Porsche")
+                Likes1_logo = new BitmapImage(new Uri("ms-appx:///Assets/porsche.jpg", UriKind.Absolute));
+            else if(Likes1 == "Football")
+                Likes1_logo = new BitmapImage(new Uri("ms-appx:///Assets/football.jpg", UriKind.Absolute));
 
             Likes2 = likes2;
+
+            if(Likes2 == "Racing")
+                Likes2_logo = new BitmapImage(new Uri("ms-appx:///Assets/car_racing.jpg", UriKind.Absolute));
+            else if(Likes2 == "Traveling")
+                Likes2_logo = new BitmapImage(new Uri("ms-appx:///Assets/traveling.jpg", UriKind.Absolute));
+            else if (Likes2 == "Titanic")
+                Likes2_logo = new BitmapImage(new Uri("ms-appx:///Assets/titanic_movie_poster.jpg", UriKind.Absolute));
+
             Likes3 = likes3;
+
+            if(Likes3=="Food")
+                Likes3_logo = new BitmapImage(new Uri("ms-appx:///Assets/food.jpg", UriKind.Absolute));
+            else if(Likes3 == "Deadpool")
+                Likes3_logo = new BitmapImage(new Uri("ms-appx:///Assets/deadpool.jpg", UriKind.Absolute));
+            else if(Likes3 == "Cars")
+                Likes3_logo = new BitmapImage(new Uri("ms-appx:///Assets/cars.jpg", UriKind.Absolute));
+
             Skills1 = skills1;
+
+            if(Skills1=="Software Development")
+                Skills1_logo = new BitmapImage(new Uri("ms-appx:///Assets/software_development.png", UriKind.Absolute));
+            else if(Skills1=="Management")
+                Skills1_logo = new BitmapImage(new Uri("ms-appx:///Assets/management.png", UriKind.Absolute));
+            else if(Skills1 == "Front End Development")
+                Skills1_logo = new BitmapImage(new Uri("ms-appx:///Assets/front_end.png", UriKind.Absolute));
+
             Skills2 = skills2;
+
+            if(Skills2 == "Photography")
+                Skills2_logo = new BitmapImage(new Uri("ms-appx:///Assets/photo.png", UriKind.Absolute));
+            else if(Skills2 == "Public Speaking")
+                Skills2_logo = new BitmapImage(new Uri("ms-appx:///Assets/public_speaking.png", UriKind.Absolute));
+            else if(Skills2 == "Server Architecture")
+                Skills2_logo = new BitmapImage(new Uri("ms-appx:///Assets/server_architecture.png", UriKind.Absolute));
+
             Skills3 = skills3;
+
+            if(Skills3 == "Writing")
+                Skills3_logo = new BitmapImage(new Uri("ms-appx:///Assets/blogging.png", UriKind.Absolute));
+            else if(Skills3 == "Innovation")
+                Skills3_logo = new BitmapImage(new Uri("ms-appx:///Assets/innovation.png", UriKind.Absolute));
+            else if(Skills3 == "Computer Engineering")
+                Skills3_logo = new BitmapImage(new Uri("ms-appx:///Assets/computer_engineering.png", UriKind.Absolute));
 
         }
 
         public string Name { get; set; }
 
-        public string Profile_Picture { get; set; }
+        public ImageSource Profile_Picture { get; set; }
 
         public string Location { get; set; }
 
@@ -102,21 +147,21 @@ namespace Connections
         public int Friends_Count { get; set; }
 
         public string Likes1 { get; set; }
-        public string Likes1_logo { get; set; }
+        public ImageSource Likes1_logo { get; set; }
 
         public string Likes2 { get; set; }
-        public string Likes2_logo { get; set; }
+        public ImageSource Likes2_logo { get; set; }
 
         public string Likes3 { get; set; }
-        public string Likes3_logo { get; set; }
+        public ImageSource Likes3_logo { get; set; }
 
         public string Skills1 { get; set; }
-        public string Skills1_logo { get; set; }
+        public ImageSource Skills1_logo { get; set; }
 
         public string Skills2 { get; set; }
-        public string Skills2_logo { get; set; }
+        public ImageSource Skills2_logo { get; set; }
 
         public string Skills3 { get; set; }
-        public string Skills3_logo { get; set; }
+        public ImageSource Skills3_logo { get; set; }
     }
 }
